@@ -24,7 +24,8 @@ No build step. Plain HTML, CSS and vanilla JavaScript.
 | --- | --- |
 | `index.html` | Page layout and static sections (hero, safety, footer) |
 | `css/styles.css` | Styling, dark theme, responsive layout |
-| `js/data.js` | The scooter database, tuning methods and FAQ content |
+| `js/data.js` | The platform database (scores), tuning methods and FAQ content |
+| `js/models.js` | Per-model catalogue: every model for every brand with specs and a tuning-potential rating |
 | `js/app.js` | Rendering, filtering, sorting and the compare table |
 
 ## Editing the rankings
@@ -41,6 +42,10 @@ The overall score is a weighted average computed in `js/app.js`
 (firmware 30 %, hardware 25 %, community 20 %, headroom 15 %, value 10 %).
 Add a new entry to the `SCOOTERS` array and it will appear in the grid, the compare pickers and the
 top-pick calculations automatically.
+
+Individual models live in `js/models.js`. Each has a `brand` (must match a `SCOOTERS` brand exactly),
+a `platform` (the `SCOOTERS` id it belongs to), specs, and a `potential` rating from 0 (locked) to
+4 (very high). The catalogue section, per-card model counts and hero stats are all derived from it.
 
 ## Disclaimer
 

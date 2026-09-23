@@ -391,3 +391,58 @@ details.card-more .more-body { margin-top: 0.75rem; font-size: 0.88rem; }
   .nav-links li a { display: block; padding: 0.9rem 1rem; }
   .specs { grid-template-columns: 1fr; }
 }
+
+/* Model catalogue */
+.btn-sm { padding: 0.5rem 0.9rem; font-size: 0.85rem; }
+.btn-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.btn-ghost { cursor: pointer; font: inherit; font-weight: 600; }
+
+.brand-catalogue { display: grid; gap: 0.75rem; }
+.brand-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.brand-block > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.brand-block > summary::-webkit-details-marker { display: none; }
+.brand-block > summary::after { content: "▸"; color: var(--accent); font-size: 1.1rem; }
+.brand-block[open] > summary::after { content: "▾"; }
+.brand-block > summary .brand-meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.brand-block > summary .badge { font-family: var(--font-body); font-weight: 500; }
+.brand-block > summary .brand-score { color: var(--accent-2); font-size: 0.9rem; }
+
+.model-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.model-table th, .model-table td { padding: 0.65rem 0.9rem; border-top: 1px solid var(--border); text-align: left; vertical-align: top; }
+.model-table thead th { background: var(--surface-2); color: var(--muted); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+.model-table td.model-name { font-weight: 600; white-space: nowrap; }
+.model-table td.model-notes { color: var(--muted); min-width: 260px; }
+.model-table td.model-year, .model-table td.model-speed { white-space: nowrap; }
+.model-table tr.hidden { display: none; }
+.model-table mark { background: rgba(255, 204, 51, 0.3); color: inherit; border-radius: 3px; padding: 0 2px; }
+
+.pot { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+.pot-0 { background: rgba(255, 107, 107, 0.15); color: var(--danger); }
+.pot-1 { background: rgba(255, 171, 76, 0.15); color: var(--warn); }
+.pot-2 { background: rgba(255, 204, 51, 0.15); color: var(--accent); }
+.pot-3 { background: rgba(46, 230, 166, 0.15); color: var(--accent-2); }
+.pot-4 { background: rgba(46, 230, 166, 0.3); color: #7ffbd0; }
+
+.card-models { font-size: 0.85rem; }
+.card-models a { font-weight: 600; }
+
+@media (max-width: 720px) {
+  .brand-block .table-wrap { border: 0; border-radius: 0; }
+  .model-table { min-width: 720px; }
+}

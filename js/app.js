@@ -30,6 +30,12 @@
 
   const scooters = SCOOTERS.map(s => ({ ...s, overall: overall(s) }));
 
+  function slug(str) {
+    return String(str).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  }
+  const modelsByPlatform = MODELS.reduce((m, x) => ((m[x.platform] = (m[x.platform] || 0) + 1), m), {});
+  function modelCount(id) { return modelsByPlatform[id] || 0; }
+
   /* ---------- Top picks ---------- */
   function renderTopPicks() {
     const el = document.getElementById("top-picks");
@@ -102,6 +108,7 @@
           <div style="grid-column:1/-1"><dt>Tuned potential</dt><dd>${esc(s.tunedSpeed)}</dd></div>
         </dl>
         <p class="card-verdict">${esc(s.verdict)}</p>
+        ${modelCount(s.id) ? `<p class="card-models"><a href="#brand-${slug(s.brand)}" data-open-brand="${esc(s.brand)}">See all ${modelCount(s.id)} ${modelCount(s.id) === 1 ? "model" : "models"} ▸</a></p>` : ""}
         <details class="card-more">
           <summary>Methods &amp; warnings</summary>
           <div class="more-body">
@@ -191,6 +198,93 @@
       </tbody>`;
   }
 
+
+  /* ---------- Model catalogue ---------- */
+  const catalogueEl = document.getElementById("brand-catalogue");
+  const modelSearchEl = document.getElementById("model-search");
+  const modelPotEl = document.getElementById("model-potential");
+  const modelCountEl = document.getElementById("model-count");
+
+  function highlight(text, q) {
+    const safe = esc(text);
+    if (!q) return safe;
+    const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
+    return safe.replace(re, m => `<mark>${m}</mark>`);
+  }
+
+  function renderCatalogue() {
+    const brandOrder = [...new Set(scooters.map(s => s.brand))]
+      .map(b => ({ brand: b, best: Math.max(...scooters.filter(s => s.brand === b).map(s => s.overall)) }))
+      .sort((a, b) => b.best - a.best || a.brand.localeCompare(b.brand));
+
+    catalogueEl.innerHTML = brandOrder.map(({ brand, best }) => {
+      const list = MODELS.filter(m => m.brand === brand);
+      if (!list.length) return "";
+      const rows = list.map(m => `
+        <tr data-search="${esc((m.name + " " + brand + " " + m.notes).toLowerCase())}" data-pot="${m.potential}">
+          <td class="model-name">${esc(m.name)}</td>
+          <td class="model-year">${m.year}</td>
+          <td>${esc(m.motor)}</td>
+          <td>${esc(m.battery)}</td>
+          <td class="model-speed">${esc(m.speed)}</td>
+          <td><span class="pot pot-${m.potential}">${POTENTIAL[m.potential]}</span></td>
+          <td class="model-notes">${esc(m.notes)}</td>
+        </tr>`).join("");
+      return `
+        <details class="brand-block" id="brand-${slug(brand)}" data-brand="${esc(brand)}">
+          <summary>
+            <span>${esc(brand)}</span>
+            <span class="brand-meta">
+              <span class="badge"><span class="brand-model-count">${list.length}</span> models</span>
+              <span class="brand-score">best platform ${best.toFixed(1)} / 10</span>
+            </span>
+          </summary>
+          <div class="table-wrap">
+            <table class="model-table">
+              <thead><tr><th>Model</th><th>Year</th><th>Motor</th><th>Battery</th><th>Stock speed</th><th>Tuning potential</th><th>Notes</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        </details>`;
+    }).join("");
+    filterCatalogue();
+  }
+
+  function filterCatalogue() {
+    const q = modelSearchEl.value.trim().toLowerCase();
+    const minPot = Number(modelPotEl.value);
+    let shown = 0;
+    catalogueEl.querySelectorAll(".brand-block").forEach(block => {
+      let visible = 0;
+      block.querySelectorAll("tbody tr").forEach(tr => {
+        const ok = (!q || tr.dataset.search.includes(q)) && Number(tr.dataset.pot) >= minPot;
+        tr.classList.toggle("hidden", !ok);
+        if (ok) visible++;
+        const nameCell = tr.querySelector(".model-name");
+        nameCell.innerHTML = highlight(nameCell.textContent, q);
+      });
+      block.querySelector(".brand-model-count").textContent = visible;
+      block.style.display = visible ? "" : "none";
+      if (q && visible) block.open = true;
+      shown += visible;
+    });
+    modelCountEl.textContent = `${shown} of ${MODELS.length} models across ${new Set(MODELS.map(m => m.brand)).size} brands`;
+  }
+
+  [modelSearchEl, modelPotEl].forEach(el => el.addEventListener("input", filterCatalogue));
+  document.getElementById("expand-all").addEventListener("click", () =>
+    catalogueEl.querySelectorAll(".brand-block").forEach(d => { d.open = true; }));
+  document.getElementById("collapse-all").addEventListener("click", () =>
+    catalogueEl.querySelectorAll(".brand-block").forEach(d => { d.open = false; }));
+
+  // "See all models" links on platform cards open the matching brand block.
+  grid.addEventListener("click", e => {
+    const link = e.target.closest("[data-open-brand]");
+    if (!link) return;
+    const block = document.getElementById("brand-" + slug(link.dataset.openBrand));
+    if (block) block.open = true;
+  });
+
   /* ---------- Methods ---------- */
   function renderMethods() {
     document.getElementById("methods-grid").innerHTML = METHODS.map(m => `
@@ -232,10 +326,12 @@
   document.getElementById("stat-count").textContent = scooters.length;
   document.getElementById("stat-count-inline").textContent = scooters.length;
   document.getElementById("stat-brands").textContent = brands.length;
+  document.getElementById("stat-models").textContent = MODELS.length;
   renderTopPicks();
   renderGrid();
   populateSelects();
   renderCompare();
+  renderCatalogue();
   renderMethods();
   renderFAQ();
 })();
