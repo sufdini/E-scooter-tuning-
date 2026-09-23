@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Which e-scooters are best for tuning? Rankings, tuning scores and mod guides across Xiaomi, Ninebot, Dualtron, Kaabo, Vsett, Zero, NAMI, Apollo and more.">
+  <meta name="description" content="Which e-scooters are best for tuning? Rankings, tuning scores and mod guides across Segway-Ninebot, Xiaomi, NIU, Navee, Apollo, Dualtron, Kaabo, NAMI, Vsett, KuKirin, Teverun and more.">
   <title>TuneScoot – Best E-Scooters for Tuning</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -31,16 +31,17 @@
         <p class="eyebrow">Cross-brand tuning guide · 2026 edition</p>
         <h1>Which e-scooters are <span class="accent">best for tuning</span>?</h1>
         <p class="lead">
-          We rated 18 platforms from Xiaomi, Ninebot, Dualtron, Kaabo, Vsett, Zero, NAMI, Apollo, EMOVE and more
-          on firmware tunability, hardware headroom, community support and value. Find the scooter that will
-          actually reward your wrench time.
+          We rated <span id="stat-count-inline">22</span> platforms from Segway-Ninebot, Xiaomi, NIU, Navee, Apollo, Dualtron, Kaabo,
+          NAMI, Vsett, KuKirin, Teverun, Zero, EMOVE and more on firmware tunability, hardware headroom,
+          community support and value. Find the scooter that will actually reward your wrench time.
         </p>
         <div class="hero-actions">
           <a href="#rankings" class="btn btn-primary">See the rankings</a>
           <a href="#scooters" class="btn btn-ghost">Browse all brands</a>
         </div>
         <ul class="hero-stats">
-          <li><strong id="stat-count">18</strong><span>platforms rated</span></li>
+          <li><strong id="stat-count">22</strong><span>platforms rated</span></li>
+          <li><strong id="stat-brands">17</strong><span>brands covered</span></li>
           <li><strong>5</strong><span>scoring criteria</span></li>
           <li><strong>6</strong><span>tuning methods</span></li>
         </ul>
@@ -58,12 +59,18 @@
     <section id="scooters" class="section section-alt">
       <div class="container">
         <h2>Tuning scores across all brands</h2>
-        <p class="section-intro">Filter by class, sort by what matters to you, and open any card for methods, verdict and warnings.</p>
+        <p class="section-intro">Filter by brand or class, sort by what matters to you, and open any card for methods, verdict and warnings.</p>
 
         <div class="controls">
           <div class="control">
             <label for="search">Search</label>
             <input type="search" id="search" placeholder="Brand or model…">
+          </div>
+          <div class="control">
+            <label for="brand">Brand</label>
+            <select id="brand">
+              <option value="all">All brands</option>
+            </select>
           </div>
           <div class="control">
             <label for="category">Class</label>

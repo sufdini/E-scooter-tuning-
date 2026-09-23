@@ -63,6 +63,7 @@
   const grid = document.getElementById("scooter-grid");
   const searchEl = document.getElementById("search");
   const catEl = document.getElementById("category");
+  const brandEl = document.getElementById("brand");
   const sortEl = document.getElementById("sort");
   const diffEl = document.getElementById("difficulty");
   const countEl = document.getElementById("result-count");
@@ -116,11 +117,13 @@
   function renderGrid() {
     const q = searchEl.value.trim().toLowerCase();
     const cat = catEl.value;
+    const brand = brandEl.value;
     const diff = diffEl.value;
     const sortKey = sortEl.value;
 
     let list = scooters.filter(s =>
       (cat === "all" || s.category === cat) &&
+      (brand === "all" || s.brand === brand) &&
       (diff === "all" || s.difficulty === diff) &&
       (!q || (s.brand + " " + s.model + " " + s.tag).toLowerCase().includes(q))
     );
@@ -137,7 +140,10 @@
       : `<p class="empty">No scooters match those filters.</p>`;
   }
 
-  [searchEl, catEl, sortEl, diffEl].forEach(el => el.addEventListener("input", renderGrid));
+  const brands = [...new Set(scooters.map(s => s.brand))].sort((a, b) => a.localeCompare(b));
+  brandEl.insertAdjacentHTML("beforeend", brands.map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join(""));
+
+  [searchEl, brandEl, catEl, sortEl, diffEl].forEach(el => el.addEventListener("input", renderGrid));
 
   /* ---------- Compare ---------- */
   const selects = Array.from(document.querySelectorAll(".compare-select"));
@@ -224,6 +230,8 @@
 
   /* ---------- Init ---------- */
   document.getElementById("stat-count").textContent = scooters.length;
+  document.getElementById("stat-count-inline").textContent = scooters.length;
+  document.getElementById("stat-brands").textContent = brands.length;
   renderTopPicks();
   renderGrid();
   populateSelects();

@@ -45,7 +45,7 @@ const SCOOTERS = [
   },
   {
     id: "ninebot-max-g30",
-    brand: "Ninebot / Segway",
+    brand: "Segway-Ninebot",
     model: "Max G30 / G30P / G30LP / G30D",
     category: "commuter",
     price: "$600–$900",
@@ -61,7 +61,7 @@ const SCOOTERS = [
   },
   {
     id: "ninebot-es",
-    brand: "Ninebot / Segway",
+    brand: "Segway-Ninebot",
     model: "ES1 / ES2 / ES3 / ES4 / E22 / E25 / E45",
     category: "commuter",
     price: "$350–$650",
@@ -73,11 +73,11 @@ const SCOOTERS = [
     verdict: "Cheap, plentiful and very well understood. The ES series was the first Ninebot to get open tooling; the E-series is basically the same platform with a fresh look.",
     warnings: ["Solid tires and small wheels make 35 km/h feel sketchy — upgrade the deck grip and ride within the frame's limits."],
     difficulty: "Easy",
-    tag: "Best budget"
+    tag: "Best budget commuter"
   },
   {
     id: "ninebot-f",
-    brand: "Ninebot / Segway",
+    brand: "Segway-Ninebot",
     model: "F25 / F30 / F40 / F65 / D-series",
     category: "commuter",
     price: "$400–$700",
@@ -93,7 +93,7 @@ const SCOOTERS = [
   },
   {
     id: "ninebot-g2-p",
-    brand: "Ninebot / Segway",
+    brand: "Segway-Ninebot",
     model: "Max G2 / G65 / P65 / P100 / GT1 / GT2",
     category: "performance",
     price: "$900–$3,000",
@@ -237,10 +237,10 @@ const SCOOTERS = [
   },
   {
     id: "kugoo",
-    brand: "Kugoo / Kukirin",
-    model: "S1 / G-Booster / G2 Pro / Kirin M4 / G3",
+    brand: "Kugoo",
+    model: "S1 / S1 Pro / G-Booster / M4 Pro / G-Max",
     category: "budget",
-    price: "$300–$1,000",
+    price: "$300–$900",
     stockSpeed: "25–55 km/h",
     tunedSpeed: "P-settings unlock; generic controller swaps",
     stockPower: "350–2 × 800 W",
@@ -249,7 +249,23 @@ const SCOOTERS = [
     verdict: "Cheap, generic and easy to tinker with. Parts are standard, P-settings are open, and nobody cries when a $400 scooter gets a new controller.",
     warnings: ["Build quality varies — check welds and wiring before pushing more power."],
     difficulty: "Easy",
-    tag: null
+    tag: "Best budget"
+  },
+  {
+    id: "kukirin",
+    brand: "KuKirin",
+    model: "G2 Pro / G2 Master / G3 / G3 Pro / G4",
+    category: "performance",
+    price: "$600–$1,500",
+    stockSpeed: "45–70 km/h",
+    tunedSpeed: "P-settings unlock; higher-amp controller swaps add 15–25 %",
+    stockPower: "600–2 × 1,200 W",
+    scores: { firmware: 7, hardware: 8, community: 7, headroom: 7, value: 9 },
+    methods: ["Display P-settings (speed limit, current, acceleration)", "Higher-amp generic controller swap", "Battery upgrade (higher Ah packs)", "Tire and brake upgrades"],
+    verdict: "Budget performance with wide-open electronics. The G2 Pro and G3 use generic QS-S4 style displays and off-the-shelf controllers, so the whole aftermarket fits. Best bang-for-buck entry into serious tuning.",
+    warnings: ["Stock brakes and swingarm bushings are the weak points — sort them before raising current.", "Water sealing is poor; check the deck after opening it."],
+    difficulty: "Easy",
+    tag: "Best budget performance"
   },
   {
     id: "nanrobot",
@@ -264,6 +280,54 @@ const SCOOTERS = [
     methods: ["Display P-settings", "Controller upgrades", "Battery upgrades", "Brake upgrades"],
     verdict: "Generic Chinese performance platform with lots of headroom and plenty of compatible parts, but a smaller English-speaking community.",
     warnings: ["Wiring gauge on older models is marginal for large current increases."],
+    difficulty: "Medium",
+    tag: null
+  },
+  {
+    id: "niu",
+    brand: "NIU",
+    model: "KQi1 / KQi2 Pro / KQi3 Pro / KQi3 Max / KQi 300X / KQi Air",
+    category: "commuter",
+    price: "$400–$1,300",
+    stockSpeed: "25–32 km/h (15.5–20 mph)",
+    tunedSpeed: "Region / speed-mode changes via NIU app; no custom firmware",
+    stockPower: "300–900 W peak",
+    scores: { firmware: 4, hardware: 5, community: 5, headroom: 6, value: 4 },
+    methods: ["Custom riding modes and region settings in the NIU app", "Controller swap (KQi3 uses a fairly standard hub motor)", "Tire and brake upgrades"],
+    verdict: "Well-built commuters with a locked ecosystem. The NIU app lets you shape acceleration and unlock the regional top speed, but firmware is signed and there is no CFW. Tune within the app or plan a controller transplant.",
+    warnings: ["Firmware is signed and updated over-the-air; opening the ESC voids warranty with no community fallback.", "The KQi Air's carbon frame is not designed for higher motor loads."],
+    difficulty: "Hard",
+    tag: null
+  },
+  {
+    id: "navee",
+    brand: "Navee",
+    model: "V50 / N65 / S65 / ST3 Pro / GT3 Pro",
+    category: "commuter",
+    price: "$350–$1,000",
+    stockSpeed: "25–32 km/h",
+    tunedSpeed: "Region unlock via app on some units; generic controller swaps",
+    stockPower: "350–1,350 W peak",
+    scores: { firmware: 4, hardware: 6, community: 4, headroom: 6, value: 5 },
+    methods: ["Region / speed unlock in the Navee app (model dependent)", "Generic controller swap (N65 / S65)", "Tire swap to pneumatic (V-series)"],
+    verdict: "Xiaomi-adjacent commuters with generic internals. There is no custom firmware scene, but the N65 and S65 use conventional controllers and 10-inch motors, so hardware mods are straightforward if you are willing to open the deck.",
+    warnings: ["Newer app versions have removed region switching on some models.", "Small community means few model-specific guides."],
+    difficulty: "Medium",
+    tag: null
+  },
+  {
+    id: "teverun",
+    brand: "Teverun",
+    model: "Fighter Mini / Fighter 11+ / Fighter Supreme / Blade GT / Blade GT+",
+    category: "performance",
+    price: "$1,300–$4,500",
+    stockSpeed: "50–100 km/h",
+    tunedSpeed: "Deep TFT display settings; controller and battery swaps",
+    stockPower: "2 × 1,000–3,000 W",
+    scores: { firmware: 8, hardware: 8, community: 6, headroom: 8, value: 7 },
+    methods: ["TFT display / app settings (current, acceleration, regen, speed limit)", "Higher-amp sine-wave controller upgrades", "Battery upgrades (higher Ah, 72 V builds)", "Suspension, tire and brake upgrades"],
+    verdict: "Teverun (formerly Blade) builds Dualtron-class hardware with an adjustable TFT display and app. Strong frames, good stock brakes and a growing parts market make it a serious modding platform, held back only by a smaller community.",
+    warnings: ["Newer app-locked units may need the display unlocked before P-settings are exposed.", "Fighter Supreme is already near the practical limit of a scooter chassis — spend on brakes and tires first."],
     difficulty: "Medium",
     tag: null
   },
@@ -305,21 +369,21 @@ const METHODS = [
   {
     title: "Custom firmware (CFW)",
     icon: "⚡",
-    brands: "Xiaomi (pre-4 series), Ninebot ES/E/F/Max G30",
+    brands: "Xiaomi (pre-4 series), Segway-Ninebot ES/E/F/Max G30",
     effort: "10 minutes, phone + app",
     description: "Tools like ScooterHacking Utility (SHU) and m365 DownG let you generate a firmware image with your own speed limit, motor current, KERS level and cruise settings, then flash it over Bluetooth. This is the highest impact, lowest cost tuning that exists."
   },
   {
     title: "P-settings / hidden menus",
     icon: "🎛️",
-    brands: "Dualtron, Kaabo, Vsett, Zero, EMOVE, Kugoo, Nanrobot, Inokim OX",
+    brands: "Dualtron, Kaabo, Vsett, Zero, Teverun, EMOVE, KuKirin, Kugoo, Nanrobot, Inokim OX",
     effort: "2 minutes, no tools",
     description: "Most performance scooters use a Minimotors-style EY3/EY4 or QS-S4 display. Holding two buttons opens a parameter menu where you can raise the speed limit, set phase current, sharpen acceleration and tune regen braking."
   },
   {
     title: "Controller (ESC) upgrade",
     icon: "🔌",
-    brands: "Ninebot Max, Kaabo, Dualtron, Zero, Vsett, EMOVE, budget scooters",
+    brands: "Segway-Ninebot Max, Kaabo, Dualtron, Zero, Vsett, Teverun, EMOVE, KuKirin, budget scooters",
     effort: "1–3 hours, basic tools",
     description: "Swapping to a higher-amp or sine-wave controller is the classic hardware tune. It raises peak current (torque) and often supports higher battery voltage. Match phase wires and Hall sensors carefully and confirm the motor can handle the added heat."
   },
@@ -333,7 +397,7 @@ const METHODS = [
   {
     title: "Motor swap",
     icon: "⚙️",
-    brands: "Ninebot Max, Xiaomi, Dualtron, Kaabo",
+    brands: "Segway-Ninebot Max, Xiaomi, Dualtron, Kaabo",
     effort: "2–4 hours",
     description: "Larger hub motors with more copper handle higher current without overheating. On commuter scooters this is what lets a firmware tune become a sustained 35–40 km/h cruise rather than a 30-second burst."
   },
@@ -349,7 +413,7 @@ const METHODS = [
 const FAQ = [
   {
     q: "Which e-scooter is the absolute best for tuning?",
-    a: "For pure tunability: the classic Xiaomi M365 / Pro 2 family, thanks to ten-minute custom firmware and the biggest community. For a commuter you want to build on: the Ninebot Max G30 (pre-1.7 firmware), which adds strong hardware and a huge parts ecosystem. For performance: Dualtron and Kaabo."
+    a: "For pure tunability: the classic Xiaomi M365 / Pro 2 family, thanks to ten-minute custom firmware and the biggest community. For a commuter you want to build on: the Segway-Ninebot Max G30 (pre-1.7 firmware), which adds strong hardware and a huge parts ecosystem. For performance: Dualtron, Kaabo, Vsett and Teverun. For budget performance: KuKirin."
   },
   {
     q: "Is tuning legal?",
@@ -365,7 +429,7 @@ const FAQ = [
   },
   {
     q: "What about the newest Xiaomi and Segway models?",
-    a: "Xiaomi 4-series and Segway G2/P-series ship with encrypted firmware. There is no reliable custom firmware for them. If tuning matters to you, buy an older platform or a performance scooter with P-settings."
+    a: "Xiaomi 4-series, Segway-Ninebot G2/P-series, NIU and Navee all ship with signed or encrypted firmware. There is no reliable custom firmware for them, so tuning is limited to what the app exposes plus hardware swaps. If tuning matters to you, buy an older platform or a performance scooter with P-settings."
   },
   {
     q: "What is a safe amount of extra speed?",

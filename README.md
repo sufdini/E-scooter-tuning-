@@ -3,6 +3,10 @@
 A static, dependency-free website that ranks e-scooters across all major brands by how well they
 respond to tuning (custom firmware, P-settings, controller/battery/motor upgrades).
 
+Brands covered: Segway-Ninebot, Xiaomi, NIU, Navee, Apollo, Dualtron, Kaabo, NAMI, Vsett, KuKirin,
+Kugoo, Teverun, Zero, EMOVE, Inokim, Nanrobot, plus budget (Hiboy / Gotrax / TurboAnt / Razor) and
+ex-rental units.
+
 ## Run it
 
 Open `index.html` in a browser, or serve the folder:
