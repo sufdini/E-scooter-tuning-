@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Which e-scooters are best for tuning? Rankings, tuning scores and mod guides across Segway-Ninebot, Xiaomi, NIU, Navee, Apollo, Dualtron, Kaabo, NAMI, Vsett, KuKirin, Teverun and more.">
+  <title>TuneScoot – Best E-Scooters for Tuning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#top" class="logo"><span class="logo-bolt">⚡</span>TuneScoot</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="#rankings">Rankings</a></li>
+        <li><a href="#scooters">All brands</a></li>
+        <li><a href="#models">All models</a></li>
+        <li><a href="#deep-mods">Deep mods</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#safety">Safety</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Cross-brand tuning guide · 2026 edition</p>
+        <h1>Which e-scooters are <span class="accent">best for tuning</span>?</h1>
+        <p class="lead">
+          We rated <span id="stat-count-inline">22</span> platforms from Segway-Ninebot, Xiaomi, NIU, Navee, Apollo, Dualtron, Kaabo,
+          NAMI, Vsett, KuKirin, Teverun, Zero, EMOVE and more on firmware tunability, hardware headroom,
+          community support and value. Find the scooter that will actually reward your wrench time.
+        </p>
+        <div class="hero-actions">
+          <a href="#rankings" class="btn btn-primary">See the rankings</a>
+          <a href="#models" class="btn btn-ghost">Browse every model</a>
+        </div>
+        <ul class="hero-stats">
+          <li><strong id="stat-count">22</strong><span>platforms rated</span></li>
+          <li><strong id="stat-brands">18</strong><span>brands covered</span></li>
+          <li><strong id="stat-models">140</strong><span>models catalogued</span></li>
+          <li><strong>5</strong><span>scoring criteria</span></li>
+          <li><strong>3</strong><span>deep-mod guides</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="rankings" class="section">
+      <div class="container">
+        <h2>Top picks by category</h2>
+        <p class="section-intro">The short answer. Each pick is the platform with the highest overall tuning score in its class.</p>
+        <div id="top-picks" class="picks-grid"></div>
+      </div>
+    </section>
+
+    <section id="scooters" class="section section-alt">
+      <div class="container">
+        <h2>Tuning scores across all brands</h2>
+        <p class="section-intro">Filter by brand or class, sort by what matters to you, and open any card for methods, verdict and warnings.</p>
+
+        <div class="controls">
+          <div class="control">
+            <label for="search">Search</label>
+            <input type="search" id="search" placeholder="Brand or model…">
+          </div>
+          <div class="control">
+            <label for="brand">Brand</label>
+            <select id="brand">
+              <option value="all">All brands</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="category">Class</label>
+            <select id="category">
+              <option value="all">All classes</option>
+              <option value="commuter">Commuter</option>
+              <option value="performance">Performance</option>
+              <option value="budget">Budget</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="sort">Sort by</label>
+            <select id="sort">
+              <option value="overall">Overall score</option>
+              <option value="firmware">Firmware tunability</option>
+              <option value="hardware">Hardware headroom</option>
+              <option value="community">Community support</option>
+              <option value="headroom">Stock headroom</option>
+              <option value="value">Value for money</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="deepmod">Deep-mod fit</label>
+            <select id="deepmod">
+              <option value="all">Any</option>
+              <option value="vesc">VESC conversion documented</option>
+              <option value="battery">Battery upgrade practical</option>
+              <option value="motor">Motor swap practical</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty">
+              <option value="all">Any</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="result-count" class="result-count"></p>
+        <div id="scooter-grid" class="scooter-grid"></div>
+      </div>
+    </section>
+
+    <section id="models" class="section">
+      <div class="container">
+        <h2>Every model, every brand</h2>
+        <p class="section-intro">The full lineup for each brand with a tuning-potential rating per model. Specs are approximate and vary by region and production year. Search across all models or open a brand to see its catalogue.</p>
+        <div class="controls controls-models">
+          <div class="control">
+            <label for="model-search">Search models</label>
+            <input type="search" id="model-search" placeholder="e.g. G30, Mantis, KQi3…">
+          </div>
+          <div class="control">
+            <label for="model-potential">Minimum tuning potential</label>
+            <select id="model-potential">
+              <option value="0">Any</option>
+              <option value="1">Low or better</option>
+              <option value="2">Medium or better</option>
+              <option value="3">High or better</option>
+              <option value="4">Very high only</option>
+            </select>
+          </div>
+          <div class="control control-actions">
+            <label>&nbsp;</label>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost btn-sm" id="expand-all">Expand all</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="collapse-all">Collapse all</button>
+            </div>
+          </div>
+        </div>
+        <p id="model-count" class="result-count"></p>
+        <div id="brand-catalogue" class="brand-catalogue"></div>
+      </div>
+    </section>
+
+    <section id="deep-mods" class="section section-alt">
+      <div class="container">
+        <h2>Deep mods: VESC, custom batteries, custom hub motors</h2>
+        <p class="section-intro">When firmware and P-settings run out, this is the next level. Replace the controller with an open-source VESC, build a battery pack around the cells and voltage you actually want, and fit a hub motor that can use the power. Each tab has the parts, the steps and how well every platform takes the mod.</p>
+
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab active" role="tab" data-tab="vesc">⚡ VESC tuning</button>
+          <button type="button" class="tab" role="tab" data-tab="battery">🔋 Custom battery</button>
+          <button type="button" class="tab" role="tab" data-tab="motor">⚙️ Custom hub motor</button>
+        </div>
+
+        <div class="tab-panel active" data-panel="vesc">
+          <div class="panel-intro">
+            <h3>What a VESC gives you</h3>
+            <p>A VESC (Vedder Electronic Speed Controller) is an open-source motor controller you configure from a laptop or phone with VESC Tool. Instead of a hidden P-settings menu, you get direct control of motor current, battery current, throttle curve, regen strength, field weakening and voltage cutoffs, plus live logging of every ride. FOC (field-oriented control) makes even cheap hub motors run smoother and quieter than the square-wave controllers most scooters ship with.</p>
+            <ul class="pros-cons">
+              <li><strong>Best for:</strong> locked-firmware scooters (Xiaomi 4, Ninebot G2, NIU, Navee), dual-motor performance builds, anyone who wants data.</li>
+              <li><strong>Cost:</strong> $120–$550 for the ESC, plus a Hall throttle ($15), display or Bluetooth module ($20–$80) and wiring.</li>
+              <li><strong>Trade-off:</strong> you lose the stock dashboard, app and usually the lights and lock unless you rewire them.</li>
+            </ul>
+          </div>
+          <h3>VESC hardware compared</h3>
+          <div class="table-wrap"><table class="mod-table" id="vesc-table"></table></div>
+          <h3>Step by step</h3>
+          <ol class="steps" id="vesc-steps"></ol>
+          <h3>How well each platform takes a VESC</h3>
+          <div class="table-wrap"><table class="mod-table fit-table" id="vesc-fit"></table></div>
+        </div>
+
+        <div class="tab-panel" data-panel="battery">
+          <div class="panel-intro">
+            <h3>Why build your own pack</h3>
+            <p>Stock packs are built to a price with mid-current cells and a BMS sized for stock power. A custom pack lets you pick high-drain cells, add parallel groups for current and range, and raise the series count for speed. It is also the most dangerous mod on this site: lithium cells do not forgive shorts, punctures or bad welds.</p>
+            <ul class="pros-cons">
+              <li><strong>Best for:</strong> anyone who has already upgraded a controller and is hitting voltage sag, or wants more range without an external pack.</li>
+              <li><strong>Cost:</strong> $3–$6 per 21700 cell. A 16S4P P45B pack is roughly $350 in cells plus $60–$120 for a smart BMS, nickel, wire and insulation.</li>
+              <li><strong>Trade-off:</strong> requires a spot welder and patience. Buy a pre-built pack from a reputable builder if you have never done it.</li>
+            </ul>
+          </div>
+          <h3>Cell choice</h3>
+          <div class="table-wrap"><table class="mod-table" id="cell-table"></table></div>
+          <h3>Voltage (series count) guide</h3>
+          <div class="table-wrap"><table class="mod-table" id="config-table"></table></div>
+          <h3>Step by step</h3>
+          <ol class="steps" id="battery-steps"></ol>
+          <h3>Battery upgrade room by platform</h3>
+          <div class="table-wrap"><table class="mod-table fit-table" id="battery-fit"></table></div>
+        </div>
+
+        <div class="tab-panel" data-panel="motor">
+          <div class="panel-intro">
+            <h3>When the motor is the bottleneck</h3>
+            <p>Firmware and controller tunes push more current through the stock motor, which turns into heat. A bigger hub motor has more copper and more magnet, so it makes more torque at the same current and survives sustained high speed. Motor swaps are where a 25 km/h commuter becomes a real 40 km/h scooter, and where a dual-motor performance scooter gains the last 20 %.</p>
+            <ul class="pros-cons">
+              <li><strong>Best for:</strong> Ninebot Max and Xiaomi owners who tuned firmware and now overheat; performance builds moving to 72 V.</li>
+              <li><strong>Cost:</strong> $80–$150 for commuter hubs, $200–$500 per motor for 10–11-inch performance hubs.</li>
+              <li><strong>Trade-off:</strong> more unsprung weight, fork or swingarm compatibility, and you will need brakes to match.</li>
+            </ul>
+          </div>
+          <h3>Hub motors people actually fit</h3>
+          <div class="table-wrap"><table class="mod-table" id="motor-table"></table></div>
+          <h3>Step by step</h3>
+          <ol class="steps" id="motor-steps"></ol>
+          <h3>Motor swap options by platform</h3>
+          <div class="table-wrap"><table class="mod-table fit-table" id="motor-fit"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="container">
+        <h2>Compare side by side</h2>
+        <p class="section-intro">Pick up to three platforms to see their scores, speeds and methods next to each other.</p>
+        <div class="compare-pickers">
+          <select class="compare-select" data-slot="0"></select>
+          <select class="compare-select" data-slot="1"></select>
+          <select class="compare-select" data-slot="2"></select>
+        </div>
+        <div class="table-wrap">
+          <table id="compare-table" class="compare-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods" class="section section-alt">
+      <div class="container">
+        <h2>The six ways to tune an e-scooter</h2>
+        <p class="section-intro">Roughly ordered from cheapest and easiest to most involved.</p>
+        <div id="methods-grid" class="methods-grid"></div>
+      </div>
+    </section>
+
+    <section id="safety" class="section">
+      <div class="container safety">
+        <h2>Before you touch anything</h2>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>⚖️ Know your local law</h3>
+            <p>Most jurisdictions limit e-scooter speed and power on public roads. A tuned scooter can be reclassified as a motor vehicle that needs registration, insurance and a licence. Tune for private land, closed tracks or where it is explicitly allowed.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🛑 Brakes before speed</h3>
+            <p>Every tuning plan on this site should start with brakes and tires. Stopping distance grows with the square of speed: going from 25 km/h to 35 km/h nearly doubles the distance you need to stop.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🔥 Respect the battery</h3>
+            <p>Lithium packs can catch fire when cells are punctured, over-discharged or charged with the wrong charger. Never bypass the BMS. If you are not confident with a spot welder, buy a pre-built pack from a reputable seller.</p>
+          </article>
+          <article class="safety-card">
+            <h3>💾 Back up before flashing</h3>
+            <p>Dump and save your stock firmware before flashing anything. Keep an ST-Link programmer on hand for Ninebot and Xiaomi units so a bad flash is an inconvenience, not a dead scooter.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🌡️ Watch the temperature</h3>
+            <p>Raised motor current means more heat. After a tune, touch the motor after a hard ride: if you cannot hold your hand on it, back the current off or upgrade the motor.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🪖 Gear up</h3>
+            <p>Above 30 km/h a bicycle helmet is no longer enough. Full-face or downhill helmets, gloves and wrist guards are the minimum for a tuned performance scooter.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section section-alt">
+      <div class="container">
+        <h2>Frequently asked questions</h2>
+        <div id="faq-list" class="faq-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>TuneScoot</strong> is an independent enthusiast guide. Scores are editorial opinions based on community tooling, parts availability and hardware headroom, and are not endorsed by any manufacturer.</p>
+      <p>Modifying an e-scooter can void its warranty, break local law and cause injury. You are responsible for what you build and where you ride it.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/mods.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
