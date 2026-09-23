@@ -18,6 +18,7 @@
         <li><a href="#rankings">Rankings</a></li>
         <li><a href="#scooters">All brands</a></li>
         <li><a href="#models">All models</a></li>
+        <li><a href="#deep-mods">Deep mods</a></li>
         <li><a href="#compare">Compare</a></li>
         <li><a href="#methods">Methods</a></li>
         <li><a href="#safety">Safety</a></li>
@@ -45,7 +46,7 @@
           <li><strong id="stat-brands">18</strong><span>brands covered</span></li>
           <li><strong id="stat-models">140</strong><span>models catalogued</span></li>
           <li><strong>5</strong><span>scoring criteria</span></li>
-          <li><strong>6</strong><span>tuning methods</span></li>
+          <li><strong>3</strong><span>deep-mod guides</span></li>
         </ul>
       </div>
     </section>
@@ -92,6 +93,15 @@
               <option value="community">Community support</option>
               <option value="headroom">Stock headroom</option>
               <option value="value">Value for money</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="deepmod">Deep-mod fit</label>
+            <select id="deepmod">
+              <option value="all">Any</option>
+              <option value="vesc">VESC conversion documented</option>
+              <option value="battery">Battery upgrade practical</option>
+              <option value="motor">Motor swap practical</option>
             </select>
           </div>
           <div class="control">
@@ -142,7 +152,76 @@
       </div>
     </section>
 
-    <section id="compare" class="section section-alt">
+    <section id="deep-mods" class="section section-alt">
+      <div class="container">
+        <h2>Deep mods: VESC, custom batteries, custom hub motors</h2>
+        <p class="section-intro">When firmware and P-settings run out, this is the next level. Replace the controller with an open-source VESC, build a battery pack around the cells and voltage you actually want, and fit a hub motor that can use the power. Each tab has the parts, the steps and how well every platform takes the mod.</p>
+
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab active" role="tab" data-tab="vesc">⚡ VESC tuning</button>
+          <button type="button" class="tab" role="tab" data-tab="battery">🔋 Custom battery</button>
+          <button type="button" class="tab" role="tab" data-tab="motor">⚙️ Custom hub motor</button>
+        </div>
+
+        <div class="tab-panel active" data-panel="vesc">
+          <div class="panel-intro">
+            <h3>What a VESC gives you</h3>
+            <p>A VESC (Vedder Electronic Speed Controller) is an open-source motor controller you configure from a laptop or phone with VESC Tool. Instead of a hidden P-settings menu, you get direct control of motor current, battery current, throttle curve, regen strength, field weakening and voltage cutoffs, plus live logging of every ride. FOC (field-oriented control) makes even cheap hub motors run smoother and quieter than the square-wave controllers most scooters ship with.</p>
+            <ul class="pros-cons">
+              <li><strong>Best for:</strong> locked-firmware scooters (Xiaomi 4, Ninebot G2, NIU, Navee), dual-motor performance builds, anyone who wants data.</li>
+              <li><strong>Cost:</strong> $120–$550 for the ESC, plus a Hall throttle ($15), display or Bluetooth module ($20–$80) and wiring.</li>
+              <li><strong>Trade-off:</strong> you lose the stock dashboard, app and usually the lights and lock unless you rewire them.</li>
+            </ul>
+          </div>
+          <h3>VESC hardware compared</h3>
+          <div class="table-wrap"><table class="mod-table" id="vesc-table"></table></div>
+          <h3>Step by step</h3>
+          <ol class="steps" id="vesc-steps"></ol>
+          <h3>How well each platform takes a VESC</h3>
+          <div class="table-wrap"><table class="mod-table fit-table" id="vesc-fit"></table></div>
+        </div>
+
+        <div class="tab-panel" data-panel="battery">
+          <div class="panel-intro">
+            <h3>Why build your own pack</h3>
+            <p>Stock packs are built to a price with mid-current cells and a BMS sized for stock power. A custom pack lets you pick high-drain cells, add parallel groups for current and range, and raise the series count for speed. It is also the most dangerous mod on this site: lithium cells do not forgive shorts, punctures or bad welds.</p>
+            <ul class="pros-cons">
+              <li><strong>Best for:</strong> anyone who has already upgraded a controller and is hitting voltage sag, or wants more range without an external pack.</li>
+              <li><strong>Cost:</strong> $3–$6 per 21700 cell. A 16S4P P45B pack is roughly $350 in cells plus $60–$120 for a smart BMS, nickel, wire and insulation.</li>
+              <li><strong>Trade-off:</strong> requires a spot welder and patience. Buy a pre-built pack from a reputable builder if you have never done it.</li>
+            </ul>
+          </div>
+          <h3>Cell choice</h3>
+          <div class="table-wrap"><table class="mod-table" id="cell-table"></table></div>
+          <h3>Voltage (series count) guide</h3>
+          <div class="table-wrap"><table class="mod-table" id="config-table"></table></div>
+          <h3>Step by step</h3>
+          <ol class="steps" id="battery-steps"></ol>
+          <h3>Battery upgrade room by platform</h3>
+          <div class="table-wrap"><table class="mod-table fit-table" id="battery-fit"></table></div>
+        </div>
+
+        <div class="tab-panel" data-panel="motor">
+          <div class="panel-intro">
+            <h3>When the motor is the bottleneck</h3>
+            <p>Firmware and controller tunes push more current through the stock motor, which turns into heat. A bigger hub motor has more copper and more magnet, so it makes more torque at the same current and survives sustained high speed. Motor swaps are where a 25 km/h commuter becomes a real 40 km/h scooter, and where a dual-motor performance scooter gains the last 20 %.</p>
+            <ul class="pros-cons">
+              <li><strong>Best for:</strong> Ninebot Max and Xiaomi owners who tuned firmware and now overheat; performance builds moving to 72 V.</li>
+              <li><strong>Cost:</strong> $80–$150 for commuter hubs, $200–$500 per motor for 10–11-inch performance hubs.</li>
+              <li><strong>Trade-off:</strong> more unsprung weight, fork or swingarm compatibility, and you will need brakes to match.</li>
+            </ul>
+          </div>
+          <h3>Hub motors people actually fit</h3>
+          <div class="table-wrap"><table class="mod-table" id="motor-table"></table></div>
+          <h3>Step by step</h3>
+          <ol class="steps" id="motor-steps"></ol>
+          <h3>Motor swap options by platform</h3>
+          <div class="table-wrap"><table class="mod-table fit-table" id="motor-fit"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
       <div class="container">
         <h2>Compare side by side</h2>
         <p class="section-intro">Pick up to three platforms to see their scores, speeds and methods next to each other.</p>
@@ -157,7 +236,7 @@
       </div>
     </section>
 
-    <section id="methods" class="section">
+    <section id="methods" class="section section-alt">
       <div class="container">
         <h2>The six ways to tune an e-scooter</h2>
         <p class="section-intro">Roughly ordered from cheapest and easiest to most involved.</p>
@@ -165,7 +244,7 @@
       </div>
     </section>
 
-    <section id="safety" class="section section-alt">
+    <section id="safety" class="section">
       <div class="container safety">
         <h2>Before you touch anything</h2>
         <div class="safety-grid">
@@ -197,7 +276,7 @@
       </div>
     </section>
 
-    <section id="faq" class="section">
+    <section id="faq" class="section section-alt">
       <div class="container">
         <h2>Frequently asked questions</h2>
         <div id="faq-list" class="faq-list"></div>
@@ -214,6 +293,7 @@
 
   <script src="js/data.js"></script>
   <script src="js/models.js"></script>
+  <script src="js/mods.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

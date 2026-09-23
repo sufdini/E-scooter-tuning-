@@ -26,6 +26,7 @@ No build step. Plain HTML, CSS and vanilla JavaScript.
 | `css/styles.css` | Styling, dark theme, responsive layout |
 | `js/data.js` | The platform database (scores), tuning methods and FAQ content |
 | `js/models.js` | Per-model catalogue: every model for every brand with specs and a tuning-potential rating |
+| `js/mods.js` | Deep-mod guides: VESC controllers, battery cells and configs, hub motors, build steps and per-platform fit ratings |
 | `js/app.js` | Rendering, filtering, sorting and the compare table |
 
 ## Editing the rankings

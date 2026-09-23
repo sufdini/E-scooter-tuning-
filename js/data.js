@@ -381,25 +381,25 @@ const METHODS = [
     description: "Most performance scooters use a Minimotors-style EY3/EY4 or QS-S4 display. Holding two buttons opens a parameter menu where you can raise the speed limit, set phase current, sharpen acceleration and tune regen braking."
   },
   {
-    title: "Controller (ESC) upgrade",
+    title: "Controller (ESC) upgrade or VESC conversion",
     icon: "🔌",
-    brands: "Segway-Ninebot Max, Kaabo, Dualtron, Zero, Vsett, Teverun, EMOVE, KuKirin, budget scooters",
-    effort: "1–3 hours, basic tools",
-    description: "Swapping to a higher-amp or sine-wave controller is the classic hardware tune. It raises peak current (torque) and often supports higher battery voltage. Match phase wires and Hall sensors carefully and confirm the motor can handle the added heat."
+    brands: "Segway-Ninebot Max, Kaabo, Dualtron, Zero, Vsett, Teverun, EMOVE, KuKirin, locked-firmware scooters",
+    effort: "1–4 hours, basic tools + laptop for VESC",
+    description: "Swapping to a higher-amp sine-wave controller raises peak current and often supports higher voltage. Going one step further, an open-source VESC gives you full FOC control, logging and every parameter exposed in VESC Tool. See the deep-mods section for hardware and steps."
   },
   {
-    title: "Battery upgrade",
+    title: "Battery upgrade or custom pack",
     icon: "🔋",
     brands: "Everything with deck space",
-    effort: "2–6 hours, or buy pre-built",
-    description: "Higher-capacity packs add range; higher-voltage packs (e.g. 36 V → 48 V, 60 V → 72 V) add speed. Always pair a voltage bump with a controller and BMS that are rated for it, and never mix cells of different age or chemistry."
+    effort: "2–6 hours with a spot welder, or buy pre-built",
+    description: "Higher-capacity packs add range; higher-voltage packs (36 V → 48 V, 60 V → 72 V) add speed. A custom-built pack with high-drain 21700 cells (Molicel P45B, Samsung 50S) and a smart BMS fixes voltage sag for good. The deep-mods section covers cells, series counts and build steps."
   },
   {
-    title: "Motor swap",
+    title: "Custom hub motor",
     icon: "⚙️",
-    brands: "Segway-Ninebot Max, Xiaomi, Dualtron, Kaabo",
+    brands: "Segway-Ninebot Max, Xiaomi, Dualtron, Kaabo, Zero, Vsett, Teverun",
     effort: "2–4 hours",
-    description: "Larger hub motors with more copper handle higher current without overheating. On commuter scooters this is what lets a firmware tune become a sustained 35–40 km/h cruise rather than a 30-second burst."
+    description: "Larger hub motors with more copper handle higher current without overheating. On commuter scooters this is what lets a firmware tune become a sustained 35–40 km/h cruise; on performance scooters it is how 60 V builds move to 72 V. Motors, axle fitment and steps are in the deep-mods section."
   },
   {
     title: "Brakes, tires & suspension",
@@ -411,6 +411,18 @@ const METHODS = [
 ];
 
 const FAQ = [
+  {
+    q: "What is a VESC and do I need one?",
+    a: "A VESC is an open-source motor controller you configure from VESC Tool on a laptop or phone. You get direct control of motor and battery current, throttle curves, regen, field weakening and full ride logging. You need one if your scooter's firmware is locked (Xiaomi 4, Segway G2/P, NIU, Navee) or if you want more control than P-settings give. You do not need one on a Xiaomi M365 or Ninebot Max that custom firmware already covers."
+  },
+  {
+    q: "Is a custom battery worth it, and which cells should I use?",
+    a: "It is worth it once you have upgraded the controller and are hitting voltage sag, or you want more range inside the deck. Molicel P45B is the best all-round 21700 cell for performance packs; Samsung 50S is the range-and-current compromise; Samsung 30Q is the classic 18650 for Xiaomi and Ninebot rebuilds. Always use a smart BMS rated above your peak current and spot weld, never solder, to the cells."
+  },
+  {
+    q: "Will a bigger hub motor make my scooter faster?",
+    a: "Only with a controller that can feed it. A bigger motor makes more torque at the same current and runs cooler, which turns a firmware tune's 30-second burst into a sustained cruise. Speed comes from voltage and the motor's winding (KV); torque comes from current and magnet mass. Match the motor to your ESC and battery, then upgrade brakes."
+  },
   {
     q: "Which e-scooter is the absolute best for tuning?",
     a: "For pure tunability: the classic Xiaomi M365 / Pro 2 family, thanks to ten-minute custom firmware and the biggest community. For a commuter you want to build on: the Segway-Ninebot Max G30 (pre-1.7 firmware), which adds strong hardware and a huge parts ecosystem. For performance: Dualtron, Kaabo, Vsett and Teverun. For budget performance: KuKirin."

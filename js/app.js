@@ -70,9 +70,25 @@
   const searchEl = document.getElementById("search");
   const catEl = document.getElementById("category");
   const brandEl = document.getElementById("brand");
+  const deepEl = document.getElementById("deepmod");
   const sortEl = document.getElementById("sort");
   const diffEl = document.getElementById("difficulty");
   const countEl = document.getElementById("result-count");
+
+  function deepHTML(id) {
+    const d = DEEP_MODS[id];
+    if (!d) return "";
+    const row = (label, m) => `
+      <span class="fit fit-${m.level}">${FIT[m.level]}</span>
+      <span><span class="deep-label">${label}:</span> <span class="deep-note">${esc(m.note)}</span></span>`;
+    return `
+      <h4>Deep mods <a href="#deep-mods" style="font-weight:500;text-transform:none;letter-spacing:0">(guides ▸)</a></h4>
+      <div class="deep-row">
+        ${row("VESC", d.vesc)}
+        ${row("Custom battery", d.battery)}
+        ${row("Hub motor", d.motor)}
+      </div>`;
+  }
 
   function cardHTML(s) {
     const pct = s.overall * 10;
@@ -116,6 +132,7 @@
             <ul>${methods}</ul>
             <h4>Watch out for</h4>
             <ul class="warn">${warnings}</ul>
+            ${deepHTML(s.id)}
           </div>
         </details>
       </article>`;
@@ -125,12 +142,14 @@
     const q = searchEl.value.trim().toLowerCase();
     const cat = catEl.value;
     const brand = brandEl.value;
+    const deep = deepEl.value;
     const diff = diffEl.value;
     const sortKey = sortEl.value;
 
     let list = scooters.filter(s =>
       (cat === "all" || s.category === cat) &&
       (brand === "all" || s.brand === brand) &&
+      (deep === "all" || ((DEEP_MODS[s.id] || {})[deep] || { level: 0 }).level >= 2) &&
       (diff === "all" || s.difficulty === diff) &&
       (!q || (s.brand + " " + s.model + " " + s.tag).toLowerCase().includes(q))
     );
@@ -150,7 +169,7 @@
   const brands = [...new Set(scooters.map(s => s.brand))].sort((a, b) => a.localeCompare(b));
   brandEl.insertAdjacentHTML("beforeend", brands.map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join(""));
 
-  [searchEl, brandEl, catEl, sortEl, diffEl].forEach(el => el.addEventListener("input", renderGrid));
+  [searchEl, brandEl, deepEl, catEl, sortEl, diffEl].forEach(el => el.addEventListener("input", renderGrid));
 
   /* ---------- Compare ---------- */
   const selects = Array.from(document.querySelectorAll(".compare-select"));
@@ -285,6 +304,55 @@
     if (block) block.open = true;
   });
 
+
+  /* ---------- Deep mods ---------- */
+  function modTable(id, headers, rows) {
+    document.getElementById(id).innerHTML =
+      `<thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead>` +
+      `<tbody>${rows.map(r => `<tr>${r.map((c, i) => `<td class="${i === r.length - 1 ? "muted" : ""}">${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  }
+  function steps(id, list) {
+    document.getElementById(id).innerHTML = list.map(st => `<li><h4>${esc(st.title)}</h4><p>${esc(st.body)}</p></li>`).join("");
+  }
+  function fitTable(id, key) {
+    const rows = [...scooters]
+      .map(s => ({ s, m: (DEEP_MODS[s.id] || {})[key] }))
+      .filter(x => x.m)
+      .sort((a, b) => b.m.level - a.m.level || b.s.overall - a.s.overall)
+      .map(({ s, m }) => [
+        `${esc(s.brand)}<br><small style="font-weight:400;color:var(--muted)">${esc(s.model)}</small>`,
+        `<span class="fit fit-${m.level}">${FIT[m.level]}</span>`,
+        esc(m.note)
+      ]);
+    modTable(id, ["Platform", "Fit", "Notes"], rows);
+  }
+
+  function renderDeepMods() {
+    modTable("vesc-table", ["Controller", "Voltage", "Current", "Motors", "Price", "Best for"],
+      VESC_CONTROLLERS.map(v => [esc(v.name), esc(v.volts), esc(v.amps), esc(v.form), esc(v.price), esc(v.best)]));
+    steps("vesc-steps", VESC_STEPS);
+    fitTable("vesc-fit", "vesc");
+
+    modTable("cell-table", ["Cell", "Format", "Capacity", "Continuous", "Best for"],
+      BATTERY_CELLS.map(c => [esc(c.cell), esc(c.format), esc(c.capacity), esc(c.current), esc(c.best)]));
+    modTable("config-table", ["Series", "Nominal", "Full charge", "Typical scooters", "Notes"],
+      BATTERY_CONFIGS.map(c => [esc(c.series), esc(c.nominal), esc(c.full), esc(c.typical), esc(c.note)]));
+    steps("battery-steps", BATTERY_STEPS);
+    fitTable("battery-fit", "battery");
+
+    modTable("motor-table", ["Motor", "Wheel", "Power", "Voltage", "Axle", "Fits"],
+      HUB_MOTORS.map(m => [esc(m.motor), esc(m.size), esc(m.power), esc(m.volts), esc(m.axle), esc(m.fits)]));
+    steps("motor-steps", MOTOR_STEPS);
+    fitTable("motor-fit", "motor");
+
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".tab-panel");
+    tabs.forEach(tab => tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.toggle("active", t === tab));
+      panels.forEach(p => p.classList.toggle("active", p.dataset.panel === tab.dataset.tab));
+    }));
+  }
+
   /* ---------- Methods ---------- */
   function renderMethods() {
     document.getElementById("methods-grid").innerHTML = METHODS.map(m => `
@@ -332,6 +400,7 @@
   populateSelects();
   renderCompare();
   renderCatalogue();
+  renderDeepMods();
   renderMethods();
   renderFAQ();
 })();
