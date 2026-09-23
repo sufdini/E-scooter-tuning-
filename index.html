@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Which e-scooters are best for tuning? Rankings, tuning scores and mod guides across Xiaomi, Ninebot, Dualtron, Kaabo, Vsett, Zero, NAMI, Apollo and more.">
+  <title>TuneScoot – Best E-Scooters for Tuning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#top" class="logo"><span class="logo-bolt">⚡</span>TuneScoot</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="#rankings">Rankings</a></li>
+        <li><a href="#scooters">All brands</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#safety">Safety</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Cross-brand tuning guide · 2026 edition</p>
+        <h1>Which e-scooters are <span class="accent">best for tuning</span>?</h1>
+        <p class="lead">
+          We rated 18 platforms from Xiaomi, Ninebot, Dualtron, Kaabo, Vsett, Zero, NAMI, Apollo, EMOVE and more
+          on firmware tunability, hardware headroom, community support and value. Find the scooter that will
+          actually reward your wrench time.
+        </p>
+        <div class="hero-actions">
+          <a href="#rankings" class="btn btn-primary">See the rankings</a>
+          <a href="#scooters" class="btn btn-ghost">Browse all brands</a>
+        </div>
+        <ul class="hero-stats">
+          <li><strong id="stat-count">18</strong><span>platforms rated</span></li>
+          <li><strong>5</strong><span>scoring criteria</span></li>
+          <li><strong>6</strong><span>tuning methods</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="rankings" class="section">
+      <div class="container">
+        <h2>Top picks by category</h2>
+        <p class="section-intro">The short answer. Each pick is the platform with the highest overall tuning score in its class.</p>
+        <div id="top-picks" class="picks-grid"></div>
+      </div>
+    </section>
+
+    <section id="scooters" class="section section-alt">
+      <div class="container">
+        <h2>Tuning scores across all brands</h2>
+        <p class="section-intro">Filter by class, sort by what matters to you, and open any card for methods, verdict and warnings.</p>
+
+        <div class="controls">
+          <div class="control">
+            <label for="search">Search</label>
+            <input type="search" id="search" placeholder="Brand or model…">
+          </div>
+          <div class="control">
+            <label for="category">Class</label>
+            <select id="category">
+              <option value="all">All classes</option>
+              <option value="commuter">Commuter</option>
+              <option value="performance">Performance</option>
+              <option value="budget">Budget</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="sort">Sort by</label>
+            <select id="sort">
+              <option value="overall">Overall score</option>
+              <option value="firmware">Firmware tunability</option>
+              <option value="hardware">Hardware headroom</option>
+              <option value="community">Community support</option>
+              <option value="headroom">Stock headroom</option>
+              <option value="value">Value for money</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty">
+              <option value="all">Any</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="result-count" class="result-count"></p>
+        <div id="scooter-grid" class="scooter-grid"></div>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="container">
+        <h2>Compare side by side</h2>
+        <p class="section-intro">Pick up to three platforms to see their scores, speeds and methods next to each other.</p>
+        <div class="compare-pickers">
+          <select class="compare-select" data-slot="0"></select>
+          <select class="compare-select" data-slot="1"></select>
+          <select class="compare-select" data-slot="2"></select>
+        </div>
+        <div class="table-wrap">
+          <table id="compare-table" class="compare-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods" class="section section-alt">
+      <div class="container">
+        <h2>The six ways to tune an e-scooter</h2>
+        <p class="section-intro">Roughly ordered from cheapest and easiest to most involved.</p>
+        <div id="methods-grid" class="methods-grid"></div>
+      </div>
+    </section>
+
+    <section id="safety" class="section">
+      <div class="container safety">
+        <h2>Before you touch anything</h2>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>⚖️ Know your local law</h3>
+            <p>Most jurisdictions limit e-scooter speed and power on public roads. A tuned scooter can be reclassified as a motor vehicle that needs registration, insurance and a licence. Tune for private land, closed tracks or where it is explicitly allowed.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🛑 Brakes before speed</h3>
+            <p>Every tuning plan on this site should start with brakes and tires. Stopping distance grows with the square of speed: going from 25 km/h to 35 km/h nearly doubles the distance you need to stop.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🔥 Respect the battery</h3>
+            <p>Lithium packs can catch fire when cells are punctured, over-discharged or charged with the wrong charger. Never bypass the BMS. If you are not confident with a spot welder, buy a pre-built pack from a reputable seller.</p>
+          </article>
+          <article class="safety-card">
+            <h3>💾 Back up before flashing</h3>
+            <p>Dump and save your stock firmware before flashing anything. Keep an ST-Link programmer on hand for Ninebot and Xiaomi units so a bad flash is an inconvenience, not a dead scooter.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🌡️ Watch the temperature</h3>
+            <p>Raised motor current means more heat. After a tune, touch the motor after a hard ride: if you cannot hold your hand on it, back the current off or upgrade the motor.</p>
+          </article>
+          <article class="safety-card">
+            <h3>🪖 Gear up</h3>
+            <p>Above 30 km/h a bicycle helmet is no longer enough. Full-face or downhill helmets, gloves and wrist guards are the minimum for a tuned performance scooter.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section section-alt">
+      <div class="container">
+        <h2>Frequently asked questions</h2>
+        <div id="faq-list" class="faq-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>TuneScoot</strong> is an independent enthusiast guide. Scores are editorial opinions based on community tooling, parts availability and hardware headroom, and are not endorsed by any manufacturer.</p>
+      <p>Modifying an e-scooter can void its warranty, break local law and cause injury. You are responsible for what you build and where you ride it.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
